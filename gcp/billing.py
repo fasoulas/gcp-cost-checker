@@ -36,11 +36,11 @@ def report_gcp_daily_cost(PROJECT_ID, DATASET, TABLE,date=None):
     try:
         query_cost_job = client.query(cost_query)
         result = query_cost_job.result()
-        total_cost = next(result).total_cost or 0.0
+        total_cost = next(iter(result)).total_cost or 0.0
 
         query_credit_job = client.query(credit_query)
         result = query_credit_job.result()
-        total_credits = next(result).total_cost or 0.0
+        total_credits = next(iter(result)).total_cost or 0.0
 
         
         return Costs(
